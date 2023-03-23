@@ -2,9 +2,16 @@ import "@/styles/globals.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import React from "react";
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const [queryClient] = React.useState(() => new QueryClient());
 
   return (
     <>
@@ -16,16 +23,19 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          /** Put your mantine theme override here */
-          colorScheme: "light",
-        }}
-      >
-        <Component {...pageProps} />
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <MantineProvider
+            withGlobalStyles
+            withNormalizeCSS
+            theme={{
+              colorScheme: "light",
+            }}
+          >
+            <Component {...pageProps} />
+          </MantineProvider>
+        </Hydrate>
+      </QueryClientProvider>
     </>
   );
 }
