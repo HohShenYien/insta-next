@@ -24,7 +24,7 @@ async function main() {
 
       // each post has 3 images
       for (let k = 0; k < 3; k++) {
-        prisma.image.create({ data: fakeImage(post.id, "post", k) });
+        await prisma.image.create({ data: fakeImage(post.id, "post", k) });
       }
     }
 
@@ -33,17 +33,21 @@ async function main() {
       const story = await prisma.story.create({ data: fakeStory(user) });
 
       // each story has 1 image
-      prisma.image.create({ data: fakeImage(story.id, "story") });
+      await prisma.image.create({ data: fakeImage(story.id, "story") });
     }
   }
 
   // let's make first 2 users like each other
-  prisma.userFollower.create({ data: fakeUserFollower(users[0], users[1]) });
-  prisma.userFollower.create({ data: fakeUserFollower(users[1], users[0]) });
+  await prisma.userFollower.create({
+    data: fakeUserFollower(users[0], users[1]),
+  });
+  await prisma.userFollower.create({
+    data: fakeUserFollower(users[1], users[0]),
+  });
 
   //let's make the second user likes every post of first user
   for (let i = 0; i < 3; i++) {
-    prisma.postLike.create({ data: fakePostLike(users[1], posts[i]) });
+    await prisma.postLike.create({ data: fakePostLike(users[1], posts[i]) });
   }
 }
 
