@@ -4,7 +4,7 @@ import { getAllPosts } from "@/api/posts";
 import Post from "@/components/posts/Post";
 
 export default function Home() {
-  const posts = useQuery({ queryFn: getAllPosts });
+  const posts = useQuery({ queryFn: getAllPosts, queryKey: ["all-posts"] });
   return (
     <>
       <Head>
