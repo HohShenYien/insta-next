@@ -15,6 +15,8 @@ async function main() {
   // creating 2 users
   for (let i = 0; i < 2; i++) {
     const user = await prisma.user.create({ data: fakeUser() });
+    // attaching a profile picture to the user
+    await prisma.image.create({ data: fakeImage(user.id, "user") });
     users.push(user);
 
     // each user has 3 posts
