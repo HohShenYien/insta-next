@@ -25,18 +25,20 @@ model User {
 }
 
 model Post {
-  id        Int        @id @default(autoincrement())
-  caption   String
-  user_id   Int
-  user      User       @relation(fields: [user_id], references: [id])
-  liked_bys PostLike[]
+  id         Int        @id @default(autoincrement())
+  caption    String
+  user_id    Int
+  user       User       @relation(fields: [user_id], references: [id])
+  liked_bys  PostLike[]
+  created_at DateTime   @default(now())
 }
 
 model Story {
-  id      Int    @id @default(autoincrement())
-  caption String
-  user_id Int
-  user    User   @relation(fields: [user_id], references: [id])
+  id         Int      @id @default(autoincrement())
+  caption    String
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  created_at DateTime @default(now())
 }
 
 model Image {
