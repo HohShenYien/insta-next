@@ -13,14 +13,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div>
-          {posts.isSuccess &&
-            posts.data.posts.map((post, index) => (
-              <Post post={post} key={index} />
-            ))}
-        </div>
-      </main>
+      <div className="space-y-4">
+        {posts.isSuccess &&
+          posts.data.posts.map((post, index) => (
+            <Post post={post} key={index} />
+          ))}
+      </div>
     </>
   );
 }

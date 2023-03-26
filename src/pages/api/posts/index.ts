@@ -1,10 +1,17 @@
-import { Post } from "@prisma/client";
+import { Post, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { AttachImage } from "@/features/images/attach-image";
 import findManyPosts from "@/features/posts/findManyPosts";
 
+export type PostWithAuthor = AttachImage<Post, "post"> & {
+  _count: {
+    liked_bys: number;
+  };
+  user: AttachImage<User, "user">;
+};
+
 export type AllPostsData = {
-  posts: AttachImage<Post, "post">[];
+  posts: PostWithAuthor[];
 };
 
 export default async function handler(

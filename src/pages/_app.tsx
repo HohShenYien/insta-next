@@ -2,16 +2,29 @@ import "@/styles/globals.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
-import React from "react";
+import React, { ReactElement, ReactNode } from "react";
 import {
   Hydrate,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { NextPage } from "next";
+import getDefaultLayout from "@/components/layouts/DefaultLayout";
+import { ModalsProvider } from "@mantine/modals";
+import { modals } from "@/utils/modals/constants";
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [queryClient] = React.useState(() => new QueryClient());
+
+  const getLayout = Component.getLayout || getDefaultLayout;
 
   return (
     <>
@@ -32,7 +45,9 @@ export default function App(props: AppProps) {
               colorScheme: "light",
             }}
           >
-            <Component {...pageProps} />
+            <ModalsProvider modals={modals}>
+              {getLayout(<Component {...pageProps} />)}
+            </ModalsProvider>
           </MantineProvider>
         </Hydrate>
       </QueryClientProvider>
