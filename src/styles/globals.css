@@ -1,2 +1,7 @@
 @tailwind base;
 @tailwind utilities;
+
+.absolute-x-center {
+  left: 50%;
+  transform: translateX(-50%);
+}

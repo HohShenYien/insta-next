@@ -1,11 +1,11 @@
 import { AttachImage } from "@/features/images/attach-image";
-import { durationSinceCreated } from "@/utils/datetime/dateDifference";
 import { Embla, useAnimationOffsetEffect, Carousel } from "@mantine/carousel";
 import { Avatar, Image, Text } from "@mantine/core";
 import { Story, User } from "@prisma/client";
 import Link from "next/link";
 import { useState } from "react";
 import { IoChevronBackCircle, IoChevronForwardCircle } from "react-icons/io5";
+import styles from "./StoryStyle.module.css";
 
 interface InnerStoryCarouselProps {
   author: AttachImage<User, "user">;
@@ -49,7 +49,7 @@ const InnerStoryCarousel = ({ author, stories }: InnerStoryCarouselProps) => {
         {stories.map((story, index) => {
           return (
             <Carousel.Slide key={index}>
-              <div className="bg-gray-400">
+              <div className="bg-gray-400 relative">
                 <Image
                   src={story.image.url}
                   alt={story.image.url}
@@ -57,6 +57,12 @@ const InnerStoryCarousel = ({ author, stories }: InnerStoryCarouselProps) => {
                   width={"50vh"}
                   fit="contain"
                 />
+                <div
+                  className={`absolute top-0 bottom-0 w-full ${styles.blackOverlay}`}
+                ></div>
+                <div className="absolute bottom-4 absolute-x-center bg-white text-sm w-[90%]">
+                  {story.caption}
+                </div>
               </div>
             </Carousel.Slide>
           );
@@ -73,7 +79,7 @@ const InnerStoryCarousel = ({ author, stories }: InnerStoryCarouselProps) => {
               className="mr-3 hover:brightness-125"
             />
           </Link>
-          <div className="flex space-x-2 items-center text-[14px]">
+          <div className="flex space-x-2 items-center text-white">
             <Link href={`/users/${author.username}`}>
               <Text className="font-semibold tracking-wider">
                 {author.username}

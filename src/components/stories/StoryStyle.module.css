@@ -1,0 +1,9 @@
+.blackOverlay {
+  background-image: linear-gradient(
+    to bottom,
+    #0006 0%,
+    transparent 25%,
+    transparent 75%,
+    #0006 100%
+  );
+}
