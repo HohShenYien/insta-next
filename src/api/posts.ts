@@ -1,5 +1,7 @@
 import { AllPostsData } from "@/pages/api/posts";
+import { PostData } from "@/pages/api/posts/[post_id]";
 import { PostLikedUsersData } from "@/pages/api/posts/[post_id]/likeds";
+import { UserPostData } from "@/pages/api/users/[username]/posts";
 import axios from "axios";
 
 export const getAllPosts = async (): Promise<AllPostsData> => {
@@ -11,5 +13,15 @@ export const getPostLikeds = async (
   postId: number
 ): Promise<PostLikedUsersData> => {
   const data = await axios.get(`/api/posts/${postId}/likeds`);
+  return data.data;
+};
+
+export const getUserPosts = async (username: string): Promise<UserPostData> => {
+  const data = await axios.get(`/api/users/${username}/posts`);
+  return data.data;
+};
+
+export const getSinglePost = async (postId: number): Promise<PostData> => {
+  const data = await axios.get(`/api/posts/${postId}`);
   return data.data;
 };

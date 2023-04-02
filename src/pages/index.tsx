@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useQuery } from "@tanstack/react-query";
 import { getAllPosts } from "@/api/posts";
 import Post from "@/components/posts/Post";
+import StoryCarousel from "@/components/carousel/StoryCarousel";
 
 export default function Home() {
   const posts = useQuery({ queryFn: getAllPosts, queryKey: ["all-posts"] });
@@ -13,7 +14,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="space-y-4">
+      <div className="space-y-4 flex flex-col items-center">
+        <StoryCarousel />
         {posts.isSuccess &&
           posts.data.posts.map((post, index) => (
             <Post post={post} key={index} />

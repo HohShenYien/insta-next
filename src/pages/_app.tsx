@@ -11,7 +11,7 @@ import {
 import { NextPage } from "next";
 import getDefaultLayout from "@/components/layouts/DefaultLayout";
 import { ModalsProvider } from "@mantine/modals";
-import { modals } from "@/utils/modals/constants";
+import { modals } from "@/utils/modals/modals";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

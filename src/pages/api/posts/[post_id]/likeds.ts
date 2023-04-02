@@ -18,6 +18,6 @@ export default async function handler(
     const users = await findPostLikedUsers(+post_id);
     res.status(200).json({ users });
   } catch (exception) {
-    res.status(404);
+    res.status(404).end();
   }
 }

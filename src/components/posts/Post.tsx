@@ -8,6 +8,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { formatReadMoreText } from "@/utils/text/format";
 import openModal from "@/utils/modals/openModal";
 import { postLikesModal } from "@/utils/modals/constants";
+import PostLiked from "./Liked/PostLiked";
 
 interface PostProps {
   post: PostWithAuthor;
@@ -32,7 +33,7 @@ const Post = ({
   return (
     <div className="bg-white border-[1px] border-solid border-gray-200 rounded-sm max-w-[480px] py-1">
       <div className="flex items-center px-2">
-        <Link href={`/user/${user.username}`}>
+        <Link href={`/users/${user.username}`}>
           <Avatar
             src={user.profile_pic?.url}
             alt={user.username}
@@ -42,7 +43,7 @@ const Post = ({
           />
         </Link>
         <div className="flex space-x-2 items-center text-[14px]">
-          <Link href={`/user/${user.username}`}>
+          <Link href={`/users/${user.username}`}>
             <Text className="hover:text-gray-700 font-semibold tracking-wider">
               {user.username}
             </Text>
@@ -55,26 +56,9 @@ const Post = ({
         <ImageCarousel images={images} />
       </div>
       <div className="px-2 text-[14px]">
+        <PostLiked postId={id} likedBy={liked_bys} />
         <div>
-          <button>
-            <AiOutlineHeart className="hover:text-gray-500" size="24px" />
-          </button>
-        </div>
-        <button
-          className="hover:text-gray-700 font-semibold tracking-wider"
-          onClick={() =>
-            openModal({
-              type: postLikesModal,
-              innerProps: {
-                postId: id,
-              },
-            })
-          }
-        >
-          {liked_bys} like{liked_bys > 1 && "s"}
-        </button>
-        <div>
-          <Link href={`/user/${user.username}`} className="mr-1">
+          <Link href={`/users/${user.username}`} className="mr-1">
             <Text
               span
               className="hover:text-gray-700 font-semibold tracking-wider"
