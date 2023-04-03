@@ -9,5 +9,7 @@ export const fakeImage = (
   type,
   associated_id,
   sequence,
-  url: faker.image.image(),
+  // I changed to use unsplash as the default loremflickr
+  // was down when I was doing other parts
+  url: faker.image.unsplash.image(),
 });
