@@ -16,7 +16,7 @@ interface OpenModalProps<T extends ModalType> {
 
 // Here is the mapping of modal name to their specific properties
 // I'm taking the properties from the function itself, excluding
-// two kkeys that will be passed for sure
+// two keys that will be passed for sure
 const modalProperties: Record<
   ModalType,
   Omit<Parameters<typeof modals.openContextModal>[0], "modal" | "innerProps">
