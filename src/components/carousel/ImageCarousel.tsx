@@ -15,12 +15,11 @@ const ImageCarousel = ({ images, size = 480 }: ImageCarouselProps) => {
     return images.sort((a, b) => a.sequence - b.sequence);
   }, [images]);
 
-  const TRANSITION_DURATION = 200;
   const [embla, setEmbla] = useState<Embla | null>(null);
 
   // This is needed to solve misaligning slides from Mantine
   // https://mantine.dev/others/carousel/#carousel-container-animation-offset
-  useAnimationOffsetEffect(embla, TRANSITION_DURATION);
+  useAnimationOffsetEffect(embla, 200);
 
   return (
     <Carousel

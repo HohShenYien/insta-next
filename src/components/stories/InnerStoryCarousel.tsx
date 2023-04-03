@@ -31,7 +31,7 @@ const InnerStoryCarousel = ({ author, stories }: InnerStoryCarouselProps) => {
             "p-0 border-0 text-white/80 blur-[0.5px] backdrop-blur-sm data-[inactive=true]:invisible data-[inactive=true]:cursor-default",
           indicator: "bg-white h-1",
           indicators: "top-4 bottom-[unset] px-4 gap-x-2",
-          viewport: "rounded-sm",
+          viewport: "rounded-sm overflow-x-hidden rounded-lg",
         }}
         styles={{
           indicator: {
@@ -60,7 +60,7 @@ const InnerStoryCarousel = ({ author, stories }: InnerStoryCarouselProps) => {
                 <div
                   className={`absolute top-0 bottom-0 w-full ${styles.blackOverlay}`}
                 ></div>
-                <div className="absolute bottom-4 absolute-x-center bg-white text-sm w-[90%]">
+                <div className="absolute bottom-4 absolute-x-center bg-white text-sm w-[90%] p-2 rounded-md">
                   {story.caption}
                 </div>
               </div>

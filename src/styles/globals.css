@@ -5,3 +5,8 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.absolute-y-center {
+  top: 50%;
+  transform: translateY(-50%);
+}

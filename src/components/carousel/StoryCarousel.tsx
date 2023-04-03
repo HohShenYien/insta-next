@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllStories } from "@/api/stories";
 import openModal from "@/utils/modals/openModal";
 import { storyModal } from "@/utils/modals/constants";
+import GradientBorderAvatar from "../avatars/GradientBorderAvatar";
 
 const StoryCarousel = () => {
   const { isSuccess, data: stories } = useQuery({
@@ -43,21 +44,11 @@ const StoryCarousel = () => {
                   openModal({ type: storyModal, innerProps: { index } })
                 }
               >
-                {/* This part is for the Instagram gradient ring */}
-                <div className="bg-gradient-to-bl from-[#D300C5] to-[#FFCE29] rounded-full p-0.5">
-                  <Image
-                    src={story.user.profile_pic?.url}
-                    alt={story.user.username}
-                    height={56}
-                    width={56}
-                    fit="cover"
-                    className="rounded-full"
-                    classNames={{
-                      root: "bg-white p-0.5 !w-[unset]",
-                      image: "rounded-full",
-                    }}
-                  />
-                </div>
+                <GradientBorderAvatar
+                  src={story.user.profile_pic?.url ?? ""}
+                  alt={story.user.username}
+                  size={56}
+                />
                 <Text className="text-sm truncate w-[70px] text-center">
                   {story.user.username}
                 </Text>

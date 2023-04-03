@@ -41,12 +41,7 @@ const SideBar = () => {
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col items-center">
           <Link href="/">
-            <Image
-              src="/brand.svg"
-              alt="InstaSpring"
-              height="120"
-              width="140"
-            />
+            <Image src="/brand.svg" alt="InstaNext" height="120" width="140" />
           </Link>
           <div className="space-y-2 w-full mt-12">
             {links.map((link, index) => {

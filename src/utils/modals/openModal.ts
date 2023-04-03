@@ -7,6 +7,7 @@ import {
   storyModal,
 } from "./constants";
 import { ModalInnerProps } from "./types";
+import { Box, clsx } from "@mantine/core";
 
 interface OpenModalProps<T extends ModalType> {
   type: T;
@@ -31,6 +32,10 @@ const modalProperties: Record<
   },
   [storyModal]: {
     fullScreen: true,
+    classNames: {
+      content: clsx("!overflow-hidden", "bg-neutral-800"),
+      close: "!bg-transparent text-white hover:text-gray-400",
+    },
   },
 };
 
@@ -42,14 +47,18 @@ function openModal<T extends ModalType>({
     padding: 0,
     modal: type,
     innerProps,
-    classNames: {
-      header: "absolute bg-transparent top-2 right-2",
-      close: "!bg-transparent text-black hover:text-gray-800",
-    },
     closeButtonProps: { size: 28 },
     radius: "lg",
     centered: true,
+    scrollAreaComponent: Box as any,
     ...modalProperties[type],
+    classNames: {
+      header: "absolute bg-transparent top-2 right-2",
+      close: "!bg-transparent text-black hover:text-gray-800",
+      inner: "overflow-hidden",
+      content: "!overflow-hidden",
+      ...modalProperties[type].classNames,
+    },
   });
 }
 
