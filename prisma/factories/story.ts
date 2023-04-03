@@ -3,7 +3,7 @@ import { Prisma, User } from "@prisma/client";
 import { fakeUser } from "./user";
 
 export const fakeStory = (user?: User): Prisma.StoryCreateInput => {
-  const caption = faker.lorem.paragraph();
+  const caption = faker.lorem.sentence();
   const created_at = faker.date.recent(15).toISOString();
 
   if (user) {
