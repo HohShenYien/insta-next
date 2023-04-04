@@ -26,7 +26,7 @@ export default async function handler(
   const { post_id } = req.query as { post_id: string };
 
   try {
-    const data = await findSinglePost(+post_id);
+    const data = await findSinglePost(post_id);
     res.status(200).json(data);
   } catch (exception) {
     res.status(404).end();

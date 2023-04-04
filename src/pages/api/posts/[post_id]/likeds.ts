@@ -15,7 +15,7 @@ export default async function handler(
   const { post_id } = req.query as { post_id: string };
 
   try {
-    const users = await findPostLikedUsers(+post_id);
+    const users = await findPostLikedUsers(post_id);
     res.status(200).json({ users });
   } catch (exception) {
     res.status(404).end();

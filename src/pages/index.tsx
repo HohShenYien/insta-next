@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllPosts } from "@/api/posts";
 import Post from "@/components/posts/Post";
 import StoryCarousel from "@/components/carousel/StoryCarousel";
+import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
   const posts = useQuery({ queryFn: getAllPosts, queryKey: ["all-posts"] });
+  const session = useSession();
   return (
     <>
       <Head>

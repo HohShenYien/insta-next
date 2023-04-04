@@ -10,7 +10,7 @@ export type AttachImage<T, Type extends string> = Type extends "user"
     };
 
 export default async function attachImage<
-  T extends { id: number },
+  T extends { id: string },
   Type extends string
 >(object: T, type: Type): Promise<AttachImage<T, Type>> {
   const images = await prisma.image.findMany({

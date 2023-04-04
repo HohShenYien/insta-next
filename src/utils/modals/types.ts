@@ -11,13 +11,13 @@ import {
 
 export type ModalInnerProps = {
   [key in typeof postLikesModal]: {
-    postId: number;
+    postId: string;
   };
 } & {
   [key in typeof createPostModal]: {};
 } & {
   [key in typeof postModal]: {
-    postId: number;
+    postId: string;
   };
 } & {
   [key in typeof storyModal]: {

@@ -3,7 +3,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 
 interface PostLikedProps {
   likedBy: number;
-  postId: number;
+  postId: string;
   className?: string;
 }
 

@@ -10,7 +10,7 @@ export const getAllPosts = async (): Promise<AllPostsData> => {
 };
 
 export const getPostLikeds = async (
-  postId: number
+  postId: string
 ): Promise<PostLikedUsersData> => {
   const data = await axios.get(`/api/posts/${postId}/likeds`);
   return data.data;
@@ -21,7 +21,7 @@ export const getUserPosts = async (username: string): Promise<UserPostData> => {
   return data.data;
 };
 
-export const getSinglePost = async (postId: number): Promise<PostData> => {
+export const getSinglePost = async (postId: string): Promise<PostData> => {
   const data = await axios.get(`/api/posts/${postId}`);
   return data.data;
 };

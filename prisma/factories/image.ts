@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { Prisma } from "@prisma/client";
 
 export const fakeImage = (
-  associated_id: number,
+  associated_id: string,
   type: string,
   sequence: number = 0
 ): Prisma.ImageCreateInput => ({
