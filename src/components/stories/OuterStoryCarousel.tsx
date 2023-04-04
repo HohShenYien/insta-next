@@ -44,7 +44,7 @@ const OuterStoryCarousel = ({
           }
         });
       }
-      const tweenValue = 1 - Math.abs(diffToTarget * 7);
+      const tweenValue = 1 - Math.abs(diffToTarget * 2.3);
       return numberWithinRange(tweenValue, 0, 1);
     });
     setTweenValues(styles);
