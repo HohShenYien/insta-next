@@ -16,12 +16,12 @@ const StoryCarousel = () => {
   return (
     <Carousel
       height={120}
-      maw={630}
+      maw={640}
       classNames={{
         control:
           "p-0 border-0 text-gray-600 data-[inactive=true]:invisible data-[inactive=true]:cursor-default bg-white",
         controls: "top-[20px]",
-        viewport: "rounded-sm w-[630px]",
+        viewport: "rounded-sm w-[640px]",
       }}
       previousControlIcon={<BiChevronLeft size={24} />}
       nextControlIcon={<BiChevronRight size={24} />}
@@ -29,7 +29,7 @@ const StoryCarousel = () => {
       slidesToScroll={4}
       draggable={false}
       align={"start"}
-      w="630"
+      w="640"
       slideGap={"sm"}
       // this is to prevent over-scrolling, which is default behaviour
       containScroll="trimSnaps"

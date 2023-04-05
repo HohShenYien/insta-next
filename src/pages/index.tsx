@@ -18,7 +18,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-row items-start justify-center space-x-2">
+      <div className="flex flex-row items-start justify-center space-x-12">
         <div className="space-y-4 flex flex-col items-center">
           <StoryCarousel />
           {posts.isSuccess &&
