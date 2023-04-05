@@ -90,7 +90,8 @@ const OuterStoryCarousel = ({
               }),
             }}
           >
-            {tweenValues[index] > 0.99 ? (
+            {/* tweenValues will be [NaN] if there's only one value */}
+            {tweenValues.length == 1 || tweenValues[index] > 0.99 ? (
               <InnerStoryCarousel author={story.user} stories={story.stories} />
             ) : (
               <div
