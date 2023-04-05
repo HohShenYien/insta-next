@@ -1,7 +1,9 @@
 import { Post, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { AttachImage } from "@/features/images/attach-image";
-import findManyPosts from "@/features/posts/findManyPosts";
+import findFollowingPosts from "@/features/posts/findFollowingPosts";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export type PostWithAuthor = AttachImage<Post, "post"> & {
   _count: {
@@ -18,6 +20,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<AllPostsData>
 ) {
-  const posts = await findManyPosts();
+  const currentSession = await getServerSession(req, res, authOptions);
+  const posts = await findFollowingPosts(currentSession?.user.id ?? "");
   res.status(200).json({ posts });
 }

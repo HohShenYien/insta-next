@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import getDefaultLayout from "../layouts/DefaultLayout";
 import { useEffect, useState } from "react";
 import SplashScreen from "../screens/SplashScreen";
+import LoginForm from "./LoginForm";
 
 interface AuthGuardProps {
   Component: NextPageWithLayout;
@@ -19,7 +20,7 @@ const AuthGuard = ({ Component, pageProps }: AuthGuardProps) => {
   // This is so that splash screen is only show once
   const [showSplash, setShowSplash] = useState(true);
   useEffect(() => {
-    if (session.status != "loading" && session.data != null) {
+    if (session.status != "loading") {
       setShowSplash(false);
     }
   }, [session, showSplash]);
@@ -28,7 +29,7 @@ const AuthGuard = ({ Component, pageProps }: AuthGuardProps) => {
     return <SplashScreen />;
   }
 
-  return canBrowse ? getLayout(<Component {...pageProps} />) : <>Login Form</>;
+  return canBrowse ? getLayout(<Component {...pageProps} />) : <LoginForm />;
 };
 
 export default AuthGuard;

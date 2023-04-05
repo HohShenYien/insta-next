@@ -5,9 +5,9 @@ import { RiUser3Line, RiUser3Fill } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { clsx } from "@mantine/core";
 import Image from "next/image";
 import SideBarButton from "./SideBarButton";
+import { signOut, useSession } from "next-auth/react";
 
 const links = [
   { name: "Home", route: "/", IconLine: AiOutlineHome, IconFilled: AiFillHome },
@@ -23,18 +23,12 @@ const links = [
     IconLine: BsPlusSquare,
     IconFilled: BsFillPlusSquareFill,
   },
-  // we will update the route to use user name in next part
-  {
-    name: "Profile",
-    route: "/profile",
-    IconLine: RiUser3Line,
-    IconFilled: RiUser3Fill,
-  },
 ];
 
 const SideBar = () => {
   const router = useRouter();
   const currentPath = router.asPath;
+  const session = useSession();
 
   return (
     <div className="w-[244px] fixed left-0 top-0 h-full px-4 py-6 border-r-[1px] border-solid border-gray-300">
@@ -56,10 +50,23 @@ const SideBar = () => {
                 />
               );
             })}
+            <SideBarButton
+              Icon={
+                currentPath == `/users/${session.data?.user.name}`
+                  ? RiUser3Fill
+                  : RiUser3Line
+              }
+              text={"Profile"}
+              href={`/users/${session.data?.user.name}`}
+              isActive={currentPath == `/users/${session.data?.user.name}`}
+            />
           </div>
         </div>
-        {/* We will implement this next */}
-        <SideBarButton text="Logout" Icon={FiLogOut} />
+        <SideBarButton
+          text="Logout"
+          Icon={FiLogOut}
+          onClick={() => signOut()}
+        />
       </div>
     </div>
   );

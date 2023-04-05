@@ -1,10 +1,17 @@
 import attachImage from "../images/attach-image";
 import prisma from "@/utils/prisma";
 
-const findManyStories = async () => {
+const findFollowingStories = async (userId: string) => {
   const users = await prisma.user.findMany({
     include: {
       stories: true,
+    },
+    where: {
+      followers: {
+        some: {
+          follower_id: userId,
+        },
+      },
     },
   });
 
@@ -19,4 +26,4 @@ const findManyStories = async () => {
   );
 };
 
-export default findManyStories;
+export default findFollowingStories;

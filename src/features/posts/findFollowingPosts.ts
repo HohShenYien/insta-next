@@ -1,7 +1,7 @@
 import attachImage from "../images/attach-image";
 import prisma from "@/utils/prisma";
 
-const findManyPosts = async () => {
+const findFollowingPosts = async (userId: string) => {
   const posts = await prisma.post.findMany({
     include: {
       user: true,
@@ -12,6 +12,15 @@ const findManyPosts = async () => {
       },
     },
     orderBy: { created_at: "desc" },
+    where: {
+      user: {
+        followers: {
+          some: {
+            follower_id: userId,
+          },
+        },
+      },
+    },
   });
 
   return await Promise.all(
@@ -26,4 +35,4 @@ const findManyPosts = async () => {
   );
 };
 
-export default findManyPosts;
+export default findFollowingPosts;

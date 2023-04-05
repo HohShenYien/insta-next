@@ -1,5 +1,5 @@
-import { Carousel, Embla } from "@mantine/carousel";
-import { Image, Text } from "@mantine/core";
+import { Carousel } from "@mantine/carousel";
+import { Text } from "@mantine/core";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { useQuery } from "@tanstack/react-query";
 import { getAllStories } from "@/api/stories";
@@ -21,7 +21,7 @@ const StoryCarousel = () => {
         control:
           "p-0 border-0 text-gray-600 data-[inactive=true]:invisible data-[inactive=true]:cursor-default bg-white",
         controls: "top-[20px]",
-        viewport: "rounded-sm",
+        viewport: "rounded-sm w-[630px]",
       }}
       previousControlIcon={<BiChevronLeft size={24} />}
       nextControlIcon={<BiChevronRight size={24} />}

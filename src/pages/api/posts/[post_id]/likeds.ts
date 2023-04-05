@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import findManyPosts from "@/features/posts/findManyPosts";
 import { AttachImage } from "@/features/images/attach-image";
 import { User } from "@prisma/client";
 import findPostLikedUsers from "@/features/posts/findPostLikedUsers";

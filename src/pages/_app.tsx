@@ -9,7 +9,6 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { NextPage } from "next";
-import getDefaultLayout from "@/components/layouts/DefaultLayout";
 import { ModalsProvider } from "@mantine/modals";
 import { modals } from "@/utils/modals/modals";
 import { SessionProvider } from "next-auth/react";
