@@ -5,11 +5,14 @@
   InstaNext
 </h1>
 <p align="center">
-  This is the source codes for my blog series on <a href="" target="_blank">FullStack Instagram Clone with Next.js</a> on Hashnode.
+  This is the source codes for my blog series on <a href="https://blogs.shenyien.cyou/series/insta-next" target="_blank">FullStack Instagram Clone with Next.js</a> on Hashnode.
 </p>
+<div align="center">
+  <img alt="Preview" src="https://user-images.githubusercontent.com/55322546/230150941-c7e1bea1-649c-45e7-ad0a-28671131b0cb.png" width="720" />
+</div>
 
 ## 🛠 Installation & Set Up
-Please refer to Part 1 & Part 2 for the full installation process with explanation, but if you're at later series, here's how you can do it
+Please refer to the blogs for the full installation process with explanation, but here's the full installation for the final codes
 
 1. Install the dependencies
    ```bash
