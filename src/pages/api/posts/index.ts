@@ -4,6 +4,8 @@ import { AttachImage } from "@/features/images/attach-image";
 import findFollowingPosts from "@/features/posts/findFollowingPosts";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
+import { createPostSchema } from "@/features/posts/createPost/createPost.schema";
+import createPost from "@/features/posts/createPost/createPost";
 
 export type PostWithAuthor = AttachImage<Post, "post"> & {
   _count: {
@@ -16,11 +18,24 @@ export type AllPostsData = {
   posts: PostWithAuthor[];
 };
 
+export type CreatedPostData = {
+  post: Post;
+};
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<AllPostsData>
+  res: NextApiResponse<AllPostsData | CreatedPostData>
 ) {
   const currentSession = await getServerSession(req, res, authOptions);
-  const posts = await findFollowingPosts(currentSession?.user.id ?? "");
-  res.status(200).json({ posts });
+  if (req.method == "GET") {
+    const posts = await findFollowingPosts(currentSession?.user.id ?? "");
+    res.status(200).json({ posts });
+  } else if (req.method == "POST") {
+    const data = createPostSchema.parse(req.body);
+    const post = await createPost(data, currentSession?.user.id ?? "");
+    res.status(201).json({ post });
+  } else {
+    // Method not allowed
+    res.status(405);
+  }
 }

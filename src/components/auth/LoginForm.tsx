@@ -1,10 +1,17 @@
 import { Button, Image, PasswordInput, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { useForm, zodResolver } from "@mantine/form";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { z } from "zod";
 
 const LoginForm = () => {
-  const form = useForm<{ email: string; password: string }>();
+  const loginSchema = z.object({
+    email: z.string().email("The email is invalid").min(1, "Email is required"),
+    password: z.string().min(1, "Password is required"),
+  });
+  const form = useForm<{ email: string; password: string }>({
+    validate: zodResolver(loginSchema),
+  });
   return (
     <div className="pt-12">
       <div className="mx-auto max-w-[800px] grid grid-cols-2">

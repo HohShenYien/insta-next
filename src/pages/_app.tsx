@@ -13,6 +13,7 @@ import { ModalsProvider } from "@mantine/modals";
 import { modals } from "@/utils/modals/modals";
 import { SessionProvider } from "next-auth/react";
 import AuthGuard from "@/components/auth/AuthGuard";
+import { Notifications } from "@mantine/notifications";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => JSX.Element;
@@ -50,6 +51,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
               <ModalsProvider modals={modals}>
                 <AuthGuard Component={Component} pageProps={pageProps} />
               </ModalsProvider>
+              <Notifications />
             </MantineProvider>
           </Hydrate>
         </QueryClientProvider>
