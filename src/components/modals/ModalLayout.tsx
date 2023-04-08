@@ -20,6 +20,8 @@ const ModalLayout = ({ title, children, padding = true }: ModalLayoutProps) => {
           "min-h-[40vh] max-h-[95vh] overflow-y-auto",
           {
             "py-2 px-3": padding,
+            "max-h-[95vh]": !title,
+            "max-h-[80vh]": title,
           },
           "relative"
         )}

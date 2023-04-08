@@ -8,7 +8,7 @@ export default async function createPost(
 ) {
   const post = await prisma.post.create({
     data: {
-      ...data,
+      caption: data.caption,
       user: {
         connect: {
           id: userId,

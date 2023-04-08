@@ -6,6 +6,6 @@ export type CreateImageParams = {
 };
 
 export const createImageSchema = z.object({
-  url: z.string().url("Must be URL"),
+  url: z.string().url("Invalid URL"),
   sequence: z.number().gte(0),
 });

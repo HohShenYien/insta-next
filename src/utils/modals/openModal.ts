@@ -3,7 +3,7 @@ import {
   ModalType,
   postLikesModal,
   postModal,
-  createPostModal,
+  createModal,
   storyModal,
 } from "./constants";
 import { ModalInnerProps } from "./types";
@@ -21,7 +21,7 @@ const modalProperties: Record<
   ModalType,
   Omit<Parameters<typeof modals.openContextModal>[0], "modal" | "innerProps">
 > = {
-  [createPostModal]: {},
+  [createModal]: {},
   [postLikesModal]: {
     size: "sm",
   },

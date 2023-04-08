@@ -13,13 +13,20 @@ const findFollowingPosts = async (userId: string) => {
     },
     orderBy: { created_at: "desc" },
     where: {
-      user: {
-        followers: {
-          some: {
-            follower_id: userId,
+      OR: [
+        {
+          user: {
+            followers: {
+              some: {
+                follower_id: userId,
+              },
+            },
           },
         },
-      },
+        {
+          user_id: userId,
+        },
+      ],
     },
   });
 

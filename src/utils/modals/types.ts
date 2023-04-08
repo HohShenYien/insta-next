@@ -1,9 +1,5 @@
-import { AttachImage } from "@/features/images/attach-image";
-import { UserPostData } from "@/pages/api/users/[username]/posts";
-import { User } from "@prisma/client";
-import { Unpacked } from "../types";
 import {
-  createPostModal,
+  createModal,
   postLikesModal,
   postModal,
   storyModal,
@@ -14,7 +10,7 @@ export type ModalInnerProps = {
     postId: string;
   };
 } & {
-  [key in typeof createPostModal]: {};
+  [key in typeof createModal]: {};
 } & {
   [key in typeof postModal]: {
     postId: string;

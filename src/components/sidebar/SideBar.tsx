@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import SideBarButton from "./SideBarButton";
 import { signOut, useSession } from "next-auth/react";
+import openModal from "@/utils/modals/openModal";
+import { createModal } from "@/utils/modals/constants";
 
 const links = [
   { name: "Home", route: "/", IconLine: AiOutlineHome, IconFilled: AiFillHome },
@@ -19,9 +21,14 @@ const links = [
   },
   {
     name: "Create",
-    route: "/new",
+    route: "/#create-modal",
     IconLine: BsPlusSquare,
     IconFilled: BsFillPlusSquareFill,
+    onClick: () =>
+      openModal({
+        type: createModal,
+        innerProps: {},
+      }),
   },
 ];
 
@@ -47,6 +54,7 @@ const SideBar = () => {
                   text={link.name}
                   href={link.route}
                   isActive={isActive}
+                  onClick={link.onClick}
                 />
               );
             })}
