@@ -4,7 +4,7 @@ import {
 } from "@/features/posts/createPost/createPost.schema";
 import { useForm, zodResolver } from "@mantine/form";
 import { Textarea, Text, Image, Button } from "@mantine/core";
-import ImageUrl from "./ImageUrl";
+import ImageUrl from "../images/ImageUrl";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createPost, getAllPosts } from "@/api/posts";
 import { showNotification } from "@mantine/notifications";

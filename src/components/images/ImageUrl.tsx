@@ -8,9 +8,15 @@ import { IoSend } from "react-icons/io5";
 
 interface ImageUrlProps {
   onSubmit: (image: CreateImageParams) => void;
+  reset?: boolean;
+  placeholder?: string;
 }
 
-const ImageUrl = ({ onSubmit }: ImageUrlProps) => {
+const ImageUrl = ({
+  onSubmit,
+  reset = true,
+  placeholder = "New image URL",
+}: ImageUrlProps) => {
   const defaultImageValues = () => ({
     url: "",
     // let's take sequence as the key by default, we will rearrange the sequence
@@ -25,7 +31,7 @@ const ImageUrl = ({ onSubmit }: ImageUrlProps) => {
   const onNewImageSubmit = () => {
     newImage.onSubmit((values) => {
       onSubmit(values);
-      newImage.setValues(defaultImageValues());
+      reset && newImage.setValues(defaultImageValues());
     })();
   };
 
@@ -34,7 +40,7 @@ const ImageUrl = ({ onSubmit }: ImageUrlProps) => {
     // and I planned to use form from the outside
     <div className="flex space-x-2 items-start mt-6">
       <TextInput
-        placeholder="New image URL"
+        placeholder={placeholder}
         {...newImage.getInputProps("url")}
         className="flex-1"
         onKeyDown={(evt) => {

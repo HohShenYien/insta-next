@@ -7,11 +7,16 @@ const findFollowingStories = async (userId: string) => {
       stories: true,
     },
     where: {
-      followers: {
-        some: {
-          follower_id: userId,
+      OR: [
+        {
+          followers: {
+            some: {
+              follower_id: userId,
+            },
+          },
         },
-      },
+        { id: userId },
+      ],
     },
   });
 

@@ -3,7 +3,8 @@ import { ModalInnerProps } from "@/utils/modals/types";
 import { ContextModalProps } from "@mantine/modals";
 import { Tabs } from "@mantine/core";
 import ModalLayout from "./ModalLayout";
-import CreatePost from "../posts/CreatePost/CreatePost";
+import CreatePost from "../posts/CreatePost";
+import CreateStory from "../stories/CreateStory";
 
 const CreateModal = ({
   innerProps: {},
@@ -22,7 +23,9 @@ const CreateModal = ({
         <Tabs.Panel value="post">
           <CreatePost />
         </Tabs.Panel>
-        <Tabs.Panel value="story">Story Modal</Tabs.Panel>
+        <Tabs.Panel value="story">
+          <CreateStory />
+        </Tabs.Panel>
       </Tabs>
     </ModalLayout>
   );
