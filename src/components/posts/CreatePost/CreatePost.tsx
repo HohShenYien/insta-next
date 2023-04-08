@@ -10,6 +10,7 @@ import { createPost, getAllPosts } from "@/api/posts";
 import { showNotification } from "@mantine/notifications";
 import { useRouter } from "next/router";
 import { modals } from "@mantine/modals";
+import SortableImageGrid from "@/components/sortable/SortableImageGrid";
 
 const CreatePost = () => {
   const router = useRouter();
@@ -57,27 +58,14 @@ const CreatePost = () => {
           form.insertListItem("images", values);
         }}
       />
-      <div className="grid grid-cols-3 gap-1 mt-8">
-        {form.values.images.map((image) => {
-          return (
-            <Image
-              src={image.url}
-              alt={image.url}
-              fit={"cover"}
-              key={image.sequence}
-              withPlaceholder
-              placeholder={<Text align="center">The image is broken</Text>}
-              classNames={{
-                root: "aspect-square",
-                figure: "h-full",
-                imageWrapper: "h-full",
-                image: "!h-full",
-                placeholder: "bg-gray-100",
-              }}
-            />
-          );
-        })}
-      </div>
+      <SortableImageGrid
+        images={form.values.images}
+        setImages={(values) => form.setFieldValue("images", values)}
+        onRemove={(index) => {
+          console.log("Removing " + index);
+          form.removeListItem("images", index);
+        }}
+      />
       <div className="flex justify-between mt-12">
         {/* Needs to validate the images in a way */}
         <div className="text-red-500">{form.errors["images"]}</div>
