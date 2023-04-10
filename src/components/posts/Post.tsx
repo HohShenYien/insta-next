@@ -22,6 +22,7 @@ const Post = ({
     created_at,
     _count: { liked_bys },
     id,
+    liked_bys: likedByMe,
   },
 }: PostProps) => {
   const timeSincePosted = useMemo(() => {
@@ -56,7 +57,11 @@ const Post = ({
         <ImageCarousel images={images} />
       </div>
       <div className="px-2 text-[14px]">
-        <PostLiked postId={id} likedBy={liked_bys} />
+        <PostLiked
+          postId={id}
+          likedBy={liked_bys}
+          initialLiked={likedByMe.length > 0}
+        />
         <div>
           <Link href={`/users/${user.username}`} className="mr-1">
             <Text

@@ -1,4 +1,4 @@
-import { Post, User } from "@prisma/client";
+import { Post, PostLike, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { AttachImage } from "@/features/images/attach-image";
 import findFollowingPosts from "@/features/posts/findFollowingPosts";
@@ -11,6 +11,7 @@ export type PostWithAuthor = AttachImage<Post, "post"> & {
   _count: {
     liked_bys: number;
   };
+  liked_bys: PostLike[];
   user: AttachImage<User, "user">;
 };
 

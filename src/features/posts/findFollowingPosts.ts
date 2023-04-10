@@ -10,6 +10,11 @@ const findFollowingPosts = async (userId: string) => {
           liked_bys: true,
         },
       },
+      liked_bys: {
+        where: {
+          user_id: userId,
+        },
+      },
     },
     orderBy: { created_at: "desc" },
     where: {
