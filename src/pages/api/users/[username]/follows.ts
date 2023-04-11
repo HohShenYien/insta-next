@@ -1,22 +1,24 @@
-import createPostLikes from "@/features/postLikes/createPostLikes";
-import deletePostLikes from "@/features/postLikes/deletePostLikes";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
+import findUserInfo from "@/features/users/findUserInfo";
+import createUserFollower from "@/features/userFollowers/createUserFollower";
+import deleteUserFollower from "@/features/userFollowers/deleteUserFollower";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { post_id } = req.query as { post_id: string };
+  const { username } = req.query as { username: string };
+  const user = await findUserInfo(username);
   const session = await getServerSession(req, res, authOptions);
-  const userId = session?.user.id ?? "";
+  const followerId = session?.user.id ?? "";
 
   if (req.method == "POST") {
-    await createPostLikes(userId, post_id);
+    await createUserFollower(user.id, followerId);
     res.status(201).end();
   } else if (req.method == "DELETE") {
-    await deletePostLikes(userId, post_id);
+    await deleteUserFollower(user.id, followerId);
     res.status(204).end();
   } else {
     res.status(401);

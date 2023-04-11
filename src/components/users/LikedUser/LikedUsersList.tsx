@@ -1,9 +1,10 @@
 import { AttachImage } from "@/features/images/attach-image";
 import { User } from "@prisma/client";
 import LikedUser from "./LikedUser";
+import { UserWithFollowersAndImage } from "@/utils/types";
 
 interface LikedUsersListProps {
-  users: AttachImage<User, "user">[];
+  users: UserWithFollowersAndImage[];
 }
 
 const LikedUsersList = ({ users }: LikedUsersListProps) => {

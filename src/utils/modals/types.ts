@@ -3,6 +3,7 @@ import {
   postLikesModal,
   postModal,
   storyModal,
+  unfollowModal,
 } from "./constants";
 
 export type ModalInnerProps = {
@@ -18,5 +19,11 @@ export type ModalInnerProps = {
 } & {
   [key in typeof storyModal]: {
     index: number;
+  };
+} & {
+  [key in typeof unfollowModal]: {
+    onConfirm: () => void;
+    username: string;
+    profilePic: string;
   };
 };

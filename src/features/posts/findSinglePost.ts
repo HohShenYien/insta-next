@@ -1,6 +1,6 @@
 import prisma from "@/utils/prisma";
 import attachImage from "../images/attach-image";
-const findSinglePost = async (postId: string) => {
+const findSinglePost = async (userId: string, postId: string) => {
   const { user, ...post } = await prisma.post.findUniqueOrThrow({
     where: {
       id: postId,
@@ -10,6 +10,11 @@ const findSinglePost = async (postId: string) => {
       _count: {
         select: {
           liked_bys: true,
+        },
+      },
+      liked_bys: {
+        where: {
+          user_id: userId,
         },
       },
     },

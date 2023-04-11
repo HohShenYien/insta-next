@@ -1,10 +1,10 @@
-import { AttachImage } from "@/features/images/attach-image";
 import { Avatar, Button } from "@mantine/core";
-import { User } from "@prisma/client";
 import Link from "next/link";
+import FollowUserButton from "../follows/FollowUserButton";
+import { UserWithFollowersAndImage } from "@/utils/types";
 
 interface LikedUserProps {
-  user: AttachImage<User, "user">;
+  user: UserWithFollowersAndImage;
 }
 
 const LikedUser = ({ user }: LikedUserProps) => {
@@ -26,12 +26,11 @@ const LikedUser = ({ user }: LikedUserProps) => {
         </div>
       </Link>
       <div className="flex-1" />
-      <Button
-        className="bg-blue-500 hover:bg-blue-600"
-        classNames={{ root: "h-[unset] py-2 !px-5" }}
-      >
-        Follow
-      </Button>
+      <FollowUserButton
+        username={user.username}
+        profilePic={user.profile_pic?.url ?? ""}
+        initialFollow={user.followers.length > 0}
+      />
     </div>
   );
 };

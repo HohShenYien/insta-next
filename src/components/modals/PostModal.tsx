@@ -52,7 +52,11 @@ const PostModal = ({
               </div>
             </div>
             <div>
-              <PostLiked postId={postId} likedBy={post.post._count.liked_bys} />
+              <PostLiked
+                postId={postId}
+                likedBy={post.post._count.liked_bys}
+                initialLiked={post.post.liked_bys.length > 0}
+              />
             </div>
           </div>
         </div>

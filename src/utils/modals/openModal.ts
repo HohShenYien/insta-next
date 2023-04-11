@@ -5,6 +5,7 @@ import {
   postModal,
   createModal,
   storyModal,
+  unfollowModal,
 } from "./constants";
 import { ModalInnerProps } from "./types";
 import { Box, clsx } from "@mantine/core";
@@ -37,6 +38,7 @@ const modalProperties: Record<
       close: "!bg-transparent text-white hover:text-gray-400",
     },
   },
+  [unfollowModal]: {},
 };
 
 function openModal<T extends ModalType>({

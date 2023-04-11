@@ -1,6 +1,6 @@
 import attachImage from "../images/attach-image";
 
-const findPostLikedUsers = async (postId: string) => {
+const findPostLikedUsers = async (postId: string, userId: string) => {
   const post = await prisma.post.findFirstOrThrow({
     where: {
       id: postId,
@@ -8,7 +8,15 @@ const findPostLikedUsers = async (postId: string) => {
     include: {
       liked_bys: {
         include: {
-          user: true,
+          user: {
+            include: {
+              followers: {
+                where: {
+                  follower_id: userId,
+                },
+              },
+            },
+          },
         },
       },
     },
