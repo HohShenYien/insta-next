@@ -38,7 +38,7 @@ const modalProperties: Record<
       close: "!bg-transparent text-white hover:text-gray-400",
     },
   },
-  [unfollowModal]: {},
+  // [unfollowModal]: {},
 };
 
 function openModal<T extends ModalType>({

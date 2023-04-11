@@ -2,14 +2,27 @@ import { getUserInfo } from "@/api/users";
 import { Avatar, Button } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import FollowUserButton from "./follows/FollowUserButton";
+import { useState } from "react";
 
 const UserInfo = () => {
   const { username } = useRouter().query as { username: string };
+  const [actualFollowing, setActualFollowing] = useState(false);
   const { data: userInfo, isSuccess } = useQuery({
     queryFn: () => getUserInfo(username),
     queryKey: ["user-info"],
     enabled: !!username,
+    onSuccess: (data) => {
+      setActualFollowing(data.user.followers.length > 1);
+    },
   });
+
+  // I had to extract these out because they are quite neested
+  const initialFollow = (userInfo?.user.followers.length ?? 0) > 1;
+  const originalFollowerCount = userInfo?.user._count.followers ?? 0;
+  const followerCount =
+    originalFollowerCount +
+    (initialFollow !== actualFollowing ? (actualFollowing ? 1 : -1) : 0);
 
   return (
     <div>
@@ -28,19 +41,19 @@ const UserInfo = () => {
             <div className="flex-[2]">
               <div className="flex items-end mb-8 space-x-8">
                 <div className="text-xl">{userInfo.user.username}</div>
-                <Button
-                  className="bg-blue-500 hover:bg-blue-600"
-                  classNames={{ root: "h-[unset] py-1.5 !px-5" }}
-                >
-                  Follow
-                </Button>
+                <FollowUserButton
+                  initialFollow={userInfo.user.followers.length > 0}
+                  profilePic={userInfo.user.profile_pic?.url ?? ""}
+                  username={userInfo.user.username}
+                  onChange={(newVal) => setActualFollowing(newVal)}
+                />
               </div>
               <div className="flex space-x-12 mb-6">
                 <div>
                   <b>{userInfo.user._count.posts}</b> posts
                 </div>
                 <div className="cursor-pointer">
-                  <b>{userInfo.user._count.followers}</b> followers
+                  <b>{followerCount}</b> followers
                 </div>
                 <div className="cursor-pointer">
                   <b>{userInfo.user._count.followings}</b> following
