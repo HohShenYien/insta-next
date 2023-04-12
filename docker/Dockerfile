@@ -28,6 +28,8 @@ RUN yarn build
 
 # 3. Production image, copy all the files and run next
 FROM base AS runner
+ARG DATABASE_URL
+ARG NEXTAUTH_SECRET
 WORKDIR /app
 
 ENV NODE_ENV=production
