@@ -25,7 +25,7 @@ email: Rod.Raynor20@hotmail.com
 password: secret
 ```
 
-Note: I've used a free version of the web & database server. You can expect them to run slow due to that reason.
+Note: I've used a free version of the web & database server. You can expect them to run slow or even break due to that reason. (Mainly due to the limit of 5 concurrent sessions of the database)
 
 ## 🛠 Installation & Set Up
 Please refer to the blogs for the full installation process with explanation, but here's the full installation for the final codes
