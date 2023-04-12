@@ -10,9 +10,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { username } = req.query as { username: string };
-  const user = await findUserInfo(username);
   const session = await getServerSession(req, res, authOptions);
   const followerId = session?.user.id ?? "";
+  const user = await findUserInfo(username, followerId);
 
   if (req.method == "POST") {
     await createUserFollower(user.id, followerId);
