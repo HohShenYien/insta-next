@@ -4,16 +4,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import FollowUserButton from "./follows/FollowUserButton";
 import { useState } from "react";
+import useFollowedUserStore from "@/stores/useFollowedUserStore";
 
 const UserInfo = () => {
   const { username } = useRouter().query as { username: string };
   const [actualFollowing, setActualFollowing] = useState(false);
+  const { reset } = useFollowedUserStore();
   const { data: userInfo, isSuccess } = useQuery({
     queryFn: () => getUserInfo(username),
     queryKey: ["user-info"],
     enabled: !!username,
     onSuccess: (data) => {
       setActualFollowing(data.user.followers.length > 1);
+      reset();
     },
   });
 

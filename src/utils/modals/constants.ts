@@ -8,5 +8,5 @@ export type ModalType =
   | typeof postLikesModal
   | typeof createModal
   | typeof postModal
-  | typeof storyModal;
-// | typeof unfollowModal;
+  | typeof storyModal
+  | typeof unfollowModal;

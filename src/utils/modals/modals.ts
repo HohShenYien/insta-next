@@ -16,5 +16,5 @@ export const modals = {
   [postModal]: PostModal,
   [storyModal]: StoryModal,
   [createModal]: CreateModal,
-  // [unfollowModal]: UnfollowUserModal,
+  [unfollowModal]: UnfollowUserModal,
 };

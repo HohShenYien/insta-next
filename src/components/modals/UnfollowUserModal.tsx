@@ -4,15 +4,14 @@ import { ContextModalProps, closeModal } from "@mantine/modals";
 import ModalLayout from "./ModalLayout";
 import { Avatar } from "@mantine/core";
 
-interface UnfollowUserModalProps {
-  innerProps: ModalInnerProps[typeof unfollowModal];
-  onClose: () => void;
-}
-
 const UnfollowUserModal = ({
-  innerProps: { onConfirm, username, profilePic },
-  onClose,
-}: UnfollowUserModalProps) => {
+  innerProps: { username, onConfirm, profilePic },
+  context: { closeModal },
+  id,
+}: ContextModalProps<ModalInnerProps[typeof unfollowModal]>) => {
+  const onClose = () => {
+    closeModal(id);
+  };
   return (
     <ModalLayout padding={false}>
       <div className="px-6 py-8 space-y-4 flex flex-col items-center">

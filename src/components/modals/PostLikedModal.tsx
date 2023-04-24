@@ -5,13 +5,18 @@ import ModalLayout from "./ModalLayout";
 import { useQuery } from "@tanstack/react-query";
 import { getPostLikeds } from "@/api/posts";
 import LikedUsersList from "../users/LikedUser/LikedUsersList";
+import useFollowedUserStore from "@/stores/useFollowedUserStore";
 
 const PostLikedModal = ({
   innerProps: { postId },
 }: ContextModalProps<ModalInnerProps[typeof postLikesModal]>) => {
+  const { reset } = useFollowedUserStore();
   const likedUsers = useQuery({
     queryFn: () => getPostLikeds(postId),
     queryKey: ["post-likeds"],
+    onSuccess: () => {
+      reset();
+    },
   });
 
   return (
